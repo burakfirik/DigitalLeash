@@ -40,8 +40,6 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     }
     
   }
-
-  
   
   func roundCornerButton() {
     createButton.layer.cornerRadius = 10
@@ -56,113 +54,108 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
   
   @IBAction func createButtonTapped(_ sender: Any) {
     
-    
-    
-    if let userName = userNameTextField.text {
-      if let radius = radiusTextField.text  {
-        if let long = longitudeTextField.text  {
-          if let lati = latitudeTextField.text {
-            
-            do {
-              let radDouble =  Double(radius)
-              let longDouble = Double(long)
-              let latiDouble = Double(lati)
-              
-              let userDetails: [String: Any] = [
-                "username": userName, "latitude": latiDouble, "longitude": longDouble, "radius": radDouble ]
-              var jsonObj = JSON(userDetails)
-              let baseURL = "https://turntotech.firebaseio.com/digitalleash/\(userName).json"
-              let requestUrl = URL(string: baseURL)
-              
-              Alamofire.request(baseURL, method:.put, parameters:userDetails,encoding: JSONEncoding.default).responseJSON { response in
-                switch response.result {
-                case .success:
-                  print(response)
-                case .failure(let error):
-                  print(error)
-                }
-              }
-
-                            
-            } catch {
-              errorLabel.isHidden = false
-              topView.backgroundColor = UIColor(hexString: "F38282")
-              errorLabel.text = "Radius, Longitude or Latitude is bad"
-            }
-    
-          } else {
-            errorLabel.isHidden = false
-            topView.backgroundColor = UIColor(hexString: "F38282")
-            errorLabel.text = "Latitude must be digit"
-            
-          }
-        } else {
-          errorLabel.isHidden = false
-          topView.backgroundColor = UIColor(hexString: "F38282")
-          errorLabel.text = "Longitude must be digit"
-        }
-      } else {
-        errorLabel.isHidden = false
-        topView.backgroundColor = UIColor(hexString: "F38282")
-        errorLabel.text = "Radius is not good"
-      }
-    } else {
+    guard let userName = userNameTextField.text else {
       errorLabel.isHidden = false
       topView.backgroundColor = UIColor(hexString: "F38282")
-      errorLabel.text = "Username is not Entered"
+      errorLabel.text = "Username is not entered"
+      return
     }
     
+    guard let radius = radiusTextField.text else {
+      errorLabel.isHidden = false
+      topView.backgroundColor = UIColor(hexString: "F38282")
+      errorLabel.text = "Radius is not entered"
+      return
+    }
     
+    guard let long = longitudeTextField.text else {
+      errorLabel.isHidden = false
+      topView.backgroundColor = UIColor(hexString: "F38282")
+      errorLabel.text = "long is not entered"
+      return
+    }
+    
+    guard let lati = latitudeTextField.text else {
+      errorLabel.isHidden = false
+      topView.backgroundColor = UIColor(hexString: "F38282")
+      errorLabel.text = "lati is not entered"
+      return
+    }
+    let radDouble =  Double(radius)
+    let longDouble = Double(long)
+    let latiDouble = Double(lati)
+    
+    let userDetails: [String: Any] = [
+      "username": userName, "latitude": latiDouble ?? 0, "longitude": longDouble ?? 0, "radius": radDouble ?? 0 ]
+    let baseURL = "https://turntotech.firebaseio.com/digitalleash/\(userName).json"
+    Alamofire.request(baseURL, method:.put, parameters:userDetails,encoding: JSONEncoding.default).responseJSON { response in
+      switch response.result {
+      case .success:
+        print(response)
+      case .failure(let error):
+        print(error)
+      }
+    }
   }
   
   @IBAction func updateButtonTapped(_ sender: Any) {
-    statusButtonTapped(sender)
+    createButtonTapped(sender)
   }
   
   @IBAction func statusButtonTapped(_ sender: Any) {
     
     let baseURL = "https://turntotech.firebaseio.com/digitalleash/\(userNameTextField.text!).json"
-    let requestUrl = URL(string: baseURL)
     
     Alamofire.request(baseURL, method:.get, parameters:nil,encoding: JSONEncoding.default).responseJSON { response in
       switch response.result {
       case .success:
         print(response)
         let locationJSON:JSON = JSON(response.result.value!)
-        var childLat = CLLocationDegrees(locationJSON["current_latitude"].stringValue)
-        var childLon = CLLocationDegrees(locationJSON["current_longitude"].stringValue)
         
-        var parentLat = CLLocationDegrees(locationJSON["latitude"].stringValue)
-        var parentLon = CLLocationDegrees(locationJSON["longitude"].stringValue)
-        var childLoc = CLLocation(latitude: childLat!, longitude: childLon!)
-        var parentLoc = CLLocation(latitude: parentLat!, longitude: parentLon!)
-        var radi  = locationJSON["radius"].double as! Double
-        
-        var distance: Double  = childLoc.distance(from: parentLoc)
-        
-        if (distance < radi) {
-          self.performSegue(withIdentifier: "good", sender: nil)
-        } else {
-          self.performSegue(withIdentifier: "bad", sender: nil)
+        guard let childLat = CLLocationDegrees(locationJSON["current_latitude"].stringValue) else {
+          self.errorLabel.isHidden = false
+          self.topView.backgroundColor = UIColor(hexString: "F38282")
+          self.errorLabel.text = "child lat is not available"
+          return
         }
         
+        guard let childLon = CLLocationDegrees(locationJSON["current_longitude"].stringValue) else {
+          self.errorLabel.isHidden = false
+          self.topView.backgroundColor = UIColor(hexString: "F38282")
+          self.errorLabel.text = "child lon is not available"
+          return
+        }
+        
+        guard let parentLat = CLLocationDegrees(locationJSON["latitude"].stringValue) else {
+          self.errorLabel.isHidden = false
+          self.topView.backgroundColor = UIColor(hexString: "F38282")
+          self.errorLabel.text = "child lat is not available"
+          return
+        }
+        
+        guard let parentLon = CLLocationDegrees(locationJSON["longitude"].stringValue) else {
+          self.errorLabel.isHidden = false
+          self.topView.backgroundColor = UIColor(hexString: "F38282")
+          self.errorLabel.text = "child lon is not available"
+          return
+        }
+        let childLoc = CLLocation(latitude: childLat, longitude: childLon)
+        let parentLoc = CLLocation(latitude: parentLat, longitude: parentLon)
+        if let radi  = locationJSON["radius"].double {
+          let distance: Double  = childLoc.distance(from: parentLoc)
+          
+          if (distance < radi) {
+            self.performSegue(withIdentifier: "good", sender: nil)
+          } else {
+            self.performSegue(withIdentifier: "bad", sender: nil)
+          }
+        }
       case .failure(let error):
         print(error)
+        
       }
     }
-    
-    
   }
-  
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    if let coordinate = manager.location?.coordinate {
-      var locDict = ["lat": coordinate.latitude, "lon": coordinate.longitude]
-      
-    }
-  }
-  
-  
 }
 
 extension UIColor {

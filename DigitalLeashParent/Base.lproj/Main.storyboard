@@ -33,8 +33,8 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5k-Zh-vyi">
-                                        <rect key="frame" x="10" y="88" width="355" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="10" y="88" width="355" height="15.5"/>
+                                        <fontDescription key="fontDescription" name="PlaytimeWithHotToddiesOblique" family="PlaytimeWithHotToddiesOblique" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -202,7 +202,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Lmj-sz-rHK"/>
-                                    <constraint firstAttribute="width" constant="175" id="j7b-e8-AOf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PlaytimeWithHotToddiesOblique" family="PlaytimeWithHotToddiesOblique" pointSize="17"/>
                                 <state key="normal" title="UH OH!">
@@ -214,27 +213,24 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status-fail" translatesAutoresizingMaskIntoConstraints="NO" id="iYY-Un-CDM">
-                                <rect key="frame" x="50" y="62" width="275" height="300"/>
+                                <rect key="frame" x="85" y="62" width="240" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="0wQ-BZ-NCN"/>
                                     <constraint firstAttribute="height" constant="300" id="eiM-89-2AC"/>
-                                    <constraint firstAttribute="width" constant="240" id="u0D-FC-q2a"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="275" id="vfk-Lz-kp4"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.77093518113121773" green="0.30104219584589526" blue="0.14833607604108809" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Zi5-zG-r2A" firstAttribute="leading" secondItem="0cd-pa-IRq" secondAttribute="leading" constant="10" id="5SN-B5-cnz"/>
-                            <constraint firstItem="iYY-Un-CDM" firstAttribute="centerX" secondItem="wnO-Gc-oC5" secondAttribute="centerX" id="H33-W9-EES"/>
                             <constraint firstItem="0cd-pa-IRq" firstAttribute="trailing" secondItem="Zi5-zG-r2A" secondAttribute="trailing" constant="10" id="HMQ-c4-oEk"/>
-                            <constraint firstItem="iYY-Un-CDM" firstAttribute="leading" secondItem="0cd-pa-IRq" secondAttribute="leading" constant="50" id="Zpa-OS-lu5"/>
+                            <constraint firstItem="ORv-C4-8vx" firstAttribute="leading" secondItem="0cd-pa-IRq" secondAttribute="leading" constant="100" id="MD8-Ke-exn"/>
+                            <constraint firstItem="0cd-pa-IRq" firstAttribute="trailing" secondItem="iYY-Un-CDM" secondAttribute="trailing" constant="50" id="WW6-IT-fdi"/>
+                            <constraint firstItem="ORv-C4-8vx" firstAttribute="centerX" secondItem="Zi5-zG-r2A" secondAttribute="centerX" id="ZS8-9h-ogD"/>
                             <constraint firstItem="ORv-C4-8vx" firstAttribute="top" secondItem="Zi5-zG-r2A" secondAttribute="bottom" constant="50" id="aFq-Rj-hDD"/>
-                            <constraint firstItem="ORv-C4-8vx" firstAttribute="leading" secondItem="0cd-pa-IRq" secondAttribute="leading" constant="100" id="at1-1n-WmL"/>
-                            <constraint firstItem="0cd-pa-IRq" firstAttribute="trailing" secondItem="iYY-Un-CDM" secondAttribute="trailing" constant="50" id="bZD-Cv-Nfb"/>
                             <constraint firstItem="iYY-Un-CDM" firstAttribute="top" secondItem="0cd-pa-IRq" secondAttribute="top" constant="42" id="duS-Pk-w9c"/>
                             <constraint firstItem="0cd-pa-IRq" firstAttribute="bottom" secondItem="ORv-C4-8vx" secondAttribute="bottom" constant="63" id="kkD-e1-zew"/>
-                            <constraint firstItem="0cd-pa-IRq" firstAttribute="trailing" secondItem="ORv-C4-8vx" secondAttribute="trailing" constant="100" id="rUB-qY-ONi"/>
+                            <constraint firstItem="iYY-Un-CDM" firstAttribute="leading" secondItem="0cd-pa-IRq" secondAttribute="leading" constant="85" id="mR2-DW-qaV"/>
                             <constraint firstItem="ORv-C4-8vx" firstAttribute="top" secondItem="Zi5-zG-r2A" secondAttribute="bottom" constant="50" id="wrp-Jz-yDO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0cd-pa-IRq"/>
@@ -264,11 +260,10 @@
                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psd-tY-X4o">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Psd-tY-X4o">
                                 <rect key="frame" x="100" y="607" width="175" height="30"/>
                                 <color key="backgroundColor" red="0.90588235294117647" green="0.45882352941176469" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="175" id="LT0-Ks-pSd"/>
                                     <constraint firstAttribute="height" constant="30" id="Ut6-de-i54"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="PlaytimeWithHotToddiesOblique" family="PlaytimeWithHotToddiesOblique" pointSize="17"/>
@@ -280,7 +275,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash-parent" translatesAutoresizingMaskIntoConstraints="NO" id="Ad9-AH-YaY">
-                                <rect key="frame" x="50" y="95" width="275" height="300"/>
+                                <rect key="frame" x="67.5" y="95" width="240" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="1hl-ib-c6Y"/>
                                     <constraint firstAttribute="width" constant="240" id="JR2-uG-7cK"/>
@@ -293,10 +288,6 @@
                             <constraint firstItem="jJp-8C-cLj" firstAttribute="trailing" secondItem="QGi-gi-8lt" secondAttribute="trailing" constant="10" id="244-kc-Uhb"/>
                             <constraint firstItem="Psd-tY-X4o" firstAttribute="top" secondItem="QGi-gi-8lt" secondAttribute="bottom" constant="50" id="BEY-jM-rxO"/>
                             <constraint firstItem="Ad9-AH-YaY" firstAttribute="centerX" secondItem="H9O-TY-xm3" secondAttribute="centerX" id="F9y-kn-FeM"/>
-                            <constraint firstItem="Ad9-AH-YaY" firstAttribute="leading" secondItem="jJp-8C-cLj" secondAttribute="leading" constant="50" id="MSi-1o-IGo"/>
-                            <constraint firstItem="jJp-8C-cLj" firstAttribute="trailing" secondItem="Psd-tY-X4o" secondAttribute="trailing" constant="100" id="aco-Ux-wAK"/>
-                            <constraint firstItem="Psd-tY-X4o" firstAttribute="leading" secondItem="jJp-8C-cLj" secondAttribute="leading" constant="100" id="cV2-om-SHa"/>
-                            <constraint firstItem="jJp-8C-cLj" firstAttribute="trailing" secondItem="Ad9-AH-YaY" secondAttribute="trailing" constant="50" id="dgD-Aj-OoI"/>
                             <constraint firstItem="jJp-8C-cLj" firstAttribute="bottom" secondItem="Psd-tY-X4o" secondAttribute="bottom" constant="30" id="jKN-hT-e2e"/>
                             <constraint firstItem="QGi-gi-8lt" firstAttribute="leading" secondItem="jJp-8C-cLj" secondAttribute="leading" constant="10" id="qMK-GQ-b75"/>
                             <constraint firstItem="QGi-gi-8lt" firstAttribute="centerX" secondItem="H9O-TY-xm3" secondAttribute="centerX" id="tdd-oo-H0S"/>
